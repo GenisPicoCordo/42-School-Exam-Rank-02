@@ -8,7 +8,7 @@
 Can be any of the 12 Functions/Programs Below:
 <table><tr><td>
   
-1. [first_word](https://github.com/genispicocordo/42-School-Exam-Rank-02/blob/main/Level%201/first_word/first_word.c)
+1. [first_word](https://github.com/genispicocordo/42-School-Exam-Rank-02/blob/main/level%201/first_word/first_word.c)
 2. [fizzbuzz](https://github.com/genispicocordo/42-School-Exam-Rank-02/blob/main/Level%201/fizzbuzz/fizzbuzz.c)
 3. [ft_strcpy](https://github.com/genispicocordo/42-School-Exam-Rank-02/blob/main/Level%201/ft_strcpy/ft_strcpy.c)
 4. [ft_strlen](https://github.com/genispicocordo/42-School-Exam-Rank-02/blob/main/Level%201/ft_strlen/ft_strlen.c)
