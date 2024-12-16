@@ -1,0 +1,3 @@
+My version of ft_split has a ft_free function to free memory in case any of the allocated words inside the double pointer fails (something that should be done in any regular split implementation).
+The subject, on the other hands, does not have free() as an allowed function, so leaving this part of the code when you write your split in the exam might return a failure. 
+I don't really know, as I didn't get the ft_spliy in my exam, but the grademe mockup exam passed my ft_split WITH ft_free. Do with this info what you think is best for you <3
