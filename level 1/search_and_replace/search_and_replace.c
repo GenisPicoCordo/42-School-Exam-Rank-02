@@ -20,12 +20,7 @@ int main(int argc, char **argv)
 
 	i = 0;
 	str = argv[1];
-	if((argc != 4) || argv[2][1] || argv[3][1])
-	{
-		write(1, "\n", 1);
-		exit (1);
-	}
-	else
+	if((argc == 4) || !argv[2][1] || !argv[3][1])
 	{
 		while(str[i])
 		{
@@ -35,6 +30,6 @@ int main(int argc, char **argv)
 				write(1, &str[i], 1);
 			i++;
 		}
-	write(1, "\n", 1);
 	}
+	write(1, "\n", 1);
 }
