@@ -17,14 +17,13 @@ int main(int argc, char **argv)
     int i;
     char *str;
 
-    if (argc != 4 || argv[2][1] != '\0' || argv[3][1] != '\0')
+    i = 0;
+    str = argv[1];
+    if (argc != 4 || argv[2][1] || argv[3][1])
     {
         write(1, "\n", 1);
         return 0;
     }
-
-    str = argv[1];
-    i = 0;
     while (str[i])
     {
         if (str[i] == argv[2][0])
