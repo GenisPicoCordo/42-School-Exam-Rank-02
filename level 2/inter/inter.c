@@ -12,42 +12,49 @@
 
 #include <unistd.h>
 
-int	already_printed(char *str, char c, int pos)
+int	search(char c, char *abc)
 {
 	int	i;
 
 	i = 0;
-	while (i < pos)
+	while (abc[i])
 	{
-		if (str[i] == c)
+		if (abc[i] == c)
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
+void	process_print(char *abc, char c, int *count)
+{
+	abc[*count] = c;
+	*count += 1;
+	write(1, &c, 1);
+}
+
 int	main(int argc, char **argv)
 {
-	int	i, j;
+	int		i;
+	int		j;
+	int		count;
+	char	abc[26];
 
 	if (argc == 3)
 	{
 		i = 0;
+		count = 0;
 		while (argv[1][i])
 		{
 			j = 0;
 			while (argv[2][j])
 			{
-				if (argv[1][i] == argv[2][j] && !already_printed(argv[1], argv[1][i], i))
-				{
-					write(1, &argv[1][i], 1);
-					break;
-				}
+				if (argv[1][i] == argv[2][j] && !search(argv[1][i], abc))
+					process_print(abc, argv[1][i], &count);
 				j++;
 			}
 			i++;
 		}
 	}
-	write(1, "\n", 1);
-	return (0);
+	write (1, "\n", 1);
 }
