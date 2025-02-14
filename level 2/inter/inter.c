@@ -31,6 +31,7 @@ int main(int argc, char **argv)
     int i;
     char abc[26];
     int pos;
+    char c;
 
     i = 0;
     pos = 0;
@@ -38,14 +39,12 @@ int main(int argc, char **argv)
     {
         while(argv[1][i])
         {
-            if(ft_strchr(argv[2], argv[1][i]))
+            c = argv[1][i];
+            if((ft_strchr(argv[2], c)) && (!ft_strchr(abc, c)))
             {
-                if(!ft_strchr(abc, argv[1][i]))
-                {
-                    abc[pos] = argv[1][i];
-                    pos += 1;
-                    write(1, &argv[1][i], 1);
-                }
+                abc[pos] = c;
+                pos += 1;
+                write(1, &c, 1);
             }
             i++;
         }
