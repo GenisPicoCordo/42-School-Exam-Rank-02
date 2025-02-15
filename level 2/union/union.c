@@ -12,47 +12,49 @@
 
 #include <unistd.h>
 
-int	ft_strchr(char *abc, char c)
+int ft_strchr(const char *str, char c)
 {
-	int	i;
+    int i;
 
-	i = 0;
-	while (abc[i])
-	{
-		if (abc[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
+    i = 0;
+    while(str[i])
+    {
+        if(str[i] == c)
+            return(1);
+        i++;
+    }
+    return(0);
 }
 
-void	process_string(char *str, char abc[26], int *j)
+void process(const char *str, char *abc, int *pos)
 {
-	int	i;
+    int i;
+    char c;
 
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_strchr(abc, str[i]))
-		{
-			*j += 1;
-			abc[*j] = str[i];
-			write(1, &str[i], 1);
-		}
-		i++;
-	}
+    i = 0;
+    while(str[i])
+        {
+            c = str[i];
+            if(!ft_strchr(abc, c))
+            {
+                abc[*pos] = c;
+                *pos += 1;
+                write(1, &c, 1);
+            }
+            i++;
+        }
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	char	abc[26];
-	int		j;
+    char abc[26];
+    int pos;
 
-	if (argc == 3)
-	{
-		j = -1;
-		process_string(argv[1], abc, &j);
-		process_string(argv[2], abc, &j);
-	}
-	write(1, "\n", 1);
+    pos = 0;
+    if(argc == 3)
+    {
+        process(argv[1], abc, &pos);
+        process(argv[2], abc, &pos);
+    }
+    write(1, "\n", 1);
 }
