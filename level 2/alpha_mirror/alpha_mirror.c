@@ -12,57 +12,27 @@
 
 #include <unistd.h>
 
-int	left_side(char c)
+char convers(char c)
 {
-	if ((c >= 'a' && c <= 'm') || (c >= 'A' && c <= 'M'))
-		return (1);
-	return (0);
+    if (c >= 'a' && c <= 'z')
+        return 'z' - (c - 'a');
+    else if (c >= 'A' && c <= 'Z')
+        return 'Z' - (c - 'A');
+    return c;
 }
 
-int	right_side(char c)
+int main(int argc, char **argv)
 {
-	if ((c >= 'n' && c <= 'z') || (c >= 'N' && c <= 'Z'))
-		return (1);
-	return (0);
-}
-
-char	conv(char c)
-{
-	if (left_side(c))
-	{
-		if (c >= 'a' && c <= 'z')
-			c += 2 * ('m' - c) + 1;
-		else if (c >= 'A' && c <= 'Z')
-			c += 2 * ('M' - c) + 1;
-	}
-	else if (right_side(c))
-	{
-		if (c >= 'a' && c <= 'z')
-			c -= 2 * (c - 'm') - 1;
-		else if (c >= 'A' && c <= 'Z')
-			c -= 2 * (c - 'M') - 1;
-	}
-	return (c);
-}
-
-int	main(int argc, char **argv)
-{
-	int		i;
-	char	c;
-
-	if (argc == 2)
-	{
-		i = 0;
-		while (argv[1][i])
-		{
-			c = argv[1][i];
-			if (left_side(c))
-				c = conv(c);
-			else if (right_side(c))
-				c = conv(c);
-			write (1, &c, 1);
-			i++;
-		}
-	}
-	write(1, "\n", 1);
+    int i = 0;
+    if (argc == 2)
+    {
+        while (argv[1][i])
+        {
+            char c = convers(argv[1][i]);
+            write(1, &c, 1);
+            i++;
+        }
+    }
+    write(1, "\n", 1);
+    return 0;
 }
