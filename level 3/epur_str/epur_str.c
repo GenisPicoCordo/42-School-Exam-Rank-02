@@ -12,37 +12,42 @@
 
 #include <unistd.h>
 
-int	is_space(char c)
+int is_space(char c)
 {
-	if (c == ' ' || c == 9)
-		return (1);
-	return (0);
+    return (c == ' ' || (c >= 9 && c <= 13));
 }
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	int	i;
-	int	in_space;
+    int i = 0;
+    int word_started = 0;
 
-	if (argc == 2)
-	{
-		i = 0;
-		in_space = 0;
-		while (is_space(argv[1][i]))
-			i++;
-		while (argv[1][i])
-		{
-			if (is_space(argv[1][i]))
-				in_space = 1;
-			if (!is_space(argv[1][i]))
-			{
-				if (in_space)
-					write(1, " ", 1);
-				in_space = 0;
-				write(1, &argv[1][i], 1);
-			}
-			i++;
-		}
-	}
-	write(1, "\n", 1);
+    if (argc == 2)
+    {
+        while (is_space(argv[1][i]))
+            i++;
+        while (argv[1][i])
+        {
+            if (!is_space(argv[1][i]))
+            {
+                // Si ya hubo una palabra antes, imprimimos un espacio
+                if (word_started)
+                    write(1, " ", 1);
+                // Imprimimos la palabra
+                while (argv[1][i] && !is_space(argv[1][i]))
+                {
+                    write(1, &argv[1][i], 1);
+                    i++;
+                }
+                word_started = 1;
+            }
+            else
+            {
+                while (argv[1][i] && is_space(argv[1][i]))
+                    i++;
+            }
+        }
+    }
+    write(1, "\n", 1);
+    return 0;
 }
