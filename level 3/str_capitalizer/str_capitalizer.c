@@ -28,7 +28,7 @@ void	process(char *s)
 	{
 		if (s[i] >= 'A' && s[i] <= 'Z')
 			s[i] += 32;
-		if ((s[i] >= 'a' && s[i] <= 'z') && (is_space(s[i - 1]) || !s[i - 1]))
+        if ((s[i] >= 'a' && s[i] <= 'z') && (i == 0 || is_space(s[i - 1])))
 			s[i] -= 32;
 		write(1, &s[i], 1);
 		i++;
