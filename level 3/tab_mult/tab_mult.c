@@ -66,9 +66,9 @@ int	main(int argc, char **argv)
 		aux = ft_atoi(argv[1]);
 		while (i <= 9)
 		{
-			ft_putnbr(aux);
-			write(1, " x ", 3);
 			ft_putnbr(i);
+			write(1, " x ", 3);
+			ft_putnbr(aux);
 			write(1, " = ", 3);
 			ft_putnbr(aux * i);
 			write(1, "\n", 1);
