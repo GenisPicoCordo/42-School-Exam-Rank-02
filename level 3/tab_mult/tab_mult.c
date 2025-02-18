@@ -70,7 +70,7 @@ int	main(int argc, char **argv)
 			write(1, " x ", 3);
 			ft_putnbr(aux);
 			write(1, " = ", 3);
-			ft_putnbr(aux * i);
+			ft_putnbr(i * aux);
 			write(1, "\n", 1);
 			i++;
 		}
