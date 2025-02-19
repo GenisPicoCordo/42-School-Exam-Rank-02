@@ -13,22 +13,19 @@
 #include <stdlib.h>
 #include "ft_list.h"
 
-void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
+void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
-	t_list	*tmp;
+    t_list *tmp;
 
-	if (begin_list == NULL || *begin_list == NULL)
-		return ;
-	tmp = *begin_list;
-	if (cmp(tmp->data, data_ref) == 0)
-	{
-		*begin_list = tmp->next;
-		free(tmp);
-		ft_list_remove_if(begin_list, data_ref, cmp);
-	}
-	else
-	{
-		tmp = *begin_list;
-		ft_list_remove_if(&tmp->next, data_ref, cmp);
-	}
+    if(*begin_list == NULL)
+        return ;
+    if((cmp)(tmp->data, data_ref) == 0)
+    {
+        tmp = *begin_list;
+        *begin_list = (*begin_list)->next;
+        free(tmp);
+        ft_list_remove_if(begin_list, data_ref, cmp);
+    }
+    else
+        ft_list_remove_if(&((*begin_list)->next), data_ref, cmp);
 }
