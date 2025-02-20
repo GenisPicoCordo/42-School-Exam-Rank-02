@@ -11,44 +11,35 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdlib.h>
 
-int	is_space(char c)
+int main(int argc, char **argv)
 {
-	if (c == ' ' || (c >= 9 && c <= 13))
-		return (1);
-	return (0);
-}
+    int l;
+    int j;
 
-int	main(int argc, char **argv)
-{
-	int	i;
-	int	start;
-	int	end;
-	int	pos;
-
-	if (argc == 2)
-	{
-		i = 0;
-		while (argv[1][i])
-			i++;
-		while (i >= 0)
-		{
-			while (!argv[1][i] || is_space(argv[1][i]))
-				i--;
-			end = i;
-			while (argv[1][i] && !is_space(argv[1][i]))
-				i--;
-			start = i + 1;
-			pos = start;
-			while (start <= end)
-			{
-				write(1, &argv[1][start], 1);
-				start++;
-			}
-			if (pos)
-				write(1, " ", 1);
-		}
-	}
-	write(1, "\n", 1);
+    l = 0;
+    j = 0;
+    if (argc == 2)
+    {
+        while (argv[1][l])
+            l++;
+        l--;
+        while (l >= 0)
+        {
+            while (l >= 0 && argv[1][l] != ' ')
+                l--;
+            j = l + 1;
+            while (argv[1][j] != ' ' && argv[1][j] != '\0')
+            {
+                write(1, &argv[1][j], 1);
+                j++;
+            }
+            if (l > 0)
+                write(1, " ", 1);
+            l--;
+        }
+        
+    }
+    write(1, "\n", 1);
+    return 0;
 }
